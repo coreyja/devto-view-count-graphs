@@ -7,6 +7,8 @@ class FetchAllMyArticlesJob
 
       article.article_stats.from_api!(external_article)
     end
+
+    Delayed::Job.enqueue self.class.new, run_at: 10.minutes.from_now
   end
 
   private
