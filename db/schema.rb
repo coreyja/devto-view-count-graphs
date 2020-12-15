@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_010127) do
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["external_id"], name: "index_articles_on_external_id", unique: true
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
