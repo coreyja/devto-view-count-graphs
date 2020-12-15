@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  has_many :article_stats
+
   def self.from_api!(hash)
     attrs = hash.slice('slug', 'cover_image', 'title', 'published_at')
     create_with(attrs)

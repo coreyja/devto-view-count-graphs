@@ -3,7 +3,9 @@
 class FetchAllMyArticlesJob
   def perform
     paginated_fetch.each do |external_article|
-      Article.from_api!(external_article)
+      article = Article.from_api!(external_article)
+
+      article.article_stats.from_api!(external_article)
     end
   end
 

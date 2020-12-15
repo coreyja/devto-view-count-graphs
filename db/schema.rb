@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_010127) do
+ActiveRecord::Schema.define(version: 2020_12_15_045039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_stats", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.integer "comments_count", null: false
+    t.integer "positive_reactions_count", null: false
+    t.integer "public_reactions_count", null: false
+    t.integer "page_views_count", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_stats_on_article_id"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string "external_id", null: false
@@ -41,4 +52,5 @@ ActiveRecord::Schema.define(version: 2020_12_15_010127) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  add_foreign_key "article_stats", "articles"
 end
