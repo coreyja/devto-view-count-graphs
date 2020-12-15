@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: devto_view_count_graphs_production
-  username: devto_view_count_graphs
-  password: <%= ENV['DEVTO_VIEW_COUNT_GRAPHS_DATABASE_PASSWORD'] %>
+     url: <%= ENV['DATABASE_URL'] %>
