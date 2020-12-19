@@ -1,0 +1,25 @@
+<h1><% @article.title %></h1>
+
+Stats:
+<table>
+  <thead>
+    <tr>
+      <td>Recorded At</td>
+      <td>Comments Count</td>
+      <td>Positive Reactions Count</td>
+      <td>Public Reactions Count</td>
+      <td>Page Views Count</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @article.article_stats.order(recorded_at: :desc).each do |stat| %>
+      <tr>
+        <td><%= stat.recorded_at %></td>
+        <td><%= stat.comments_count %></td>
+        <td><%= stat.positive_reactions_count %></td>
+        <td><%= stat.public_reactions_count %></td>
+        <td><%= stat.page_views_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
