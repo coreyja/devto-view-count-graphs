@@ -8,6 +8,6 @@ class ArticleStat < ApplicationRecord
       'public_reactions_count',
       'page_views_count'
     )
-    create!(attrs)
+    create!(attrs.merge(recorded_at: Time.zone.now))
   end
 end
