@@ -1,25 +1,15 @@
 <h1><% @article.title %></h1>
 
 Stats:
-<table>
-  <thead>
-    <tr>
-      <td>Recorded At</td>
-      <td>Comments Count</td>
-      <td>Positive Reactions Count</td>
-      <td>Public Reactions Count</td>
-      <td>Page Views Count</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @article.article_stats.order(recorded_at: :desc).each do |stat| %>
-      <tr>
-        <td><%= stat.recorded_at %></td>
-        <td><%= stat.comments_count %></td>
-        <td><%= stat.positive_reactions_count %></td>
-        <td><%= stat.public_reactions_count %></td>
-        <td><%= stat.page_views_count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<h2>Page Views</h2>
+<%= line_chart @article.article_stats.group_by_hour(:recorded_at).maximum(:page_views_count) %>
+
+<h2>Comment Count</h2>
+<%= line_chart @article.article_stats.group_by_hour(:recorded_at).maximum(:comments_count) %>
+
+<h2>Positive Reactions Count</h2>
+<%= line_chart @article.article_stats.group_by_hour(:recorded_at).maximum(:positive_reactions_count) %>
+
+<h2>Public Reactions Count</h2>
+<%= line_chart @article.article_stats.group_by_hour(:recorded_at).maximum(:public_reactions_count) %>
