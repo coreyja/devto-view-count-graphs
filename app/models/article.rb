@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Article < ApplicationRecord
-  has_many :article_stats
+  has_many :article_stats, dependent: :destroy
 
   def self.from_api!(hash)
     attrs = hash.slice('slug', 'cover_image', 'title', 'published_at')

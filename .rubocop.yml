@@ -1,3 +1,12 @@
 require:
   - rubocop-rails
   - rubocop-rspec
+
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'node_modules/**/*'
