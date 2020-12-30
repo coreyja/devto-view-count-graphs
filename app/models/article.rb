@@ -9,4 +9,8 @@ class Article < ApplicationRecord
       .create_or_find_by(external_id: hash['id'])
       .tap { |a| a.update!(attrs) }
   end
+
+  def most_recent_stat
+    article_stats.by_recency.first
+  end
 end

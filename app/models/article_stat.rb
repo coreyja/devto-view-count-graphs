@@ -10,4 +10,6 @@ class ArticleStat < ApplicationRecord
     )
     create!(attrs.merge(recorded_at: Time.zone.now))
   end
+
+  scope :by_recency, -> { order(recorded_at: :DESC) }
 end
