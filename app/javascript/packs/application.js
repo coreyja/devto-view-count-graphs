@@ -17,3 +17,5 @@ require("channels")
 
 require("chartkick")
 require("chart.js")
+
+import "stylesheets/application"
