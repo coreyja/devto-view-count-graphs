@@ -1,0 +1,6 @@
+<h1 class="text-4xl text-center"><%= @article.title %></h1>
+<div id="spacer" class="flex-grow"></div>
+<%= line_chart @article.article_stats.group_by_hour(:recorded_at).maximum(:comments_count), width: '100%' %>
+<div id="spacer" class="flex-grow"></div>
+
+<%= render 'graph_nav_footer', active: :comments, article: @article %>

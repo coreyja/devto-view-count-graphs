@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :articles, only: %w[index show] do
     resource :page_views, only: %w[show]
     resource :likes, only: %w[show]
+    resource :comments, only: %w[show]
   end
 end
