@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root 'articles#index'
   resources :articles, only: %w[index show] do
     resource :page_views, only: %w[show]
+    resource :likes, only: %w[show]
   end
 end

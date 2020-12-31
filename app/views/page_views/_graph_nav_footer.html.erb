@@ -1,5 +1,0 @@
-<div class="flex flex-row">
-  <%= render 'footer_button', icon: 'icons/heart', sub_text: 'Likes', link_to: root_path  %>
-  <%= render 'footer_button', icon: 'icons/eye', sub_text: 'Views', link_to: article_page_views_path(article_id: local_assigns[:article]), active: local_assigns[:active] == :views %>
-  <%= render 'footer_button', icon: 'icons/comment', sub_text: 'Comments', link_to: root_path %>
-</div>
