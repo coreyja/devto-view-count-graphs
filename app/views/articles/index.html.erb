@@ -1,23 +1,16 @@
 <h1 class="font-serif text-xl">Most Recent Posts</h1>
 <ul>
-<% @most_recent_articles.each do |article| %>
-  <li>
-    <%= link_to article_path(article), class: 'underline' do %>
-      <%= article.title %> -- <%= article.most_recent_stat.page_views_count %> Views
-    <% end %>
-  </li>
-<% end %>
+  <%= render partial: 'article_list_item', collection: @most_recent_articles, as: :article %>
 </ul>
 
-<div data-controller="expandable-list">
-  <h1 class="font-serif text-xl" data-action="click->expandable-list#toggle">Articles This Month</h1>
-  <ul data-expandable-list-target="list">
-    <% @articles_this_month.each do |article| %>
-      <li>
-        <%= link_to article_path(article), class: 'underline' do %>
-          <%= article.title %> -- <%= article.most_recent_stat.page_views_count %> Views
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<%= render 'expandable_list', locals: { title: 'Articles This Month' } do %>
+  <%= render partial: 'article_list_item', collection: @articles_this_month, as: :article %>
+<% end %>
+
+<%= render 'expandable_list', locals: { title: 'Previous 3 Months' } do %>
+  <%= render partial: 'article_list_item', collection: @articles_in_preview_3_months, as: :article %>
+<% end %>
+
+<%= render 'expandable_list', locals: { title: 'Older Articles' } do %>
+  <%= render partial: 'article_list_item', collection: @older_articles, as: :article %>
+<% end %>

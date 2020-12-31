@@ -1,0 +1,5 @@
+<li>
+  <%= link_to article_path(article), class: 'underline' do %>
+    <%= article.title %> -- <%= article.most_recent_stat.page_views_count %> Views
+  <% end %>
+</li>
