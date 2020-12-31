@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_185350) do
+ActiveRecord::Schema.define(version: 2020_12_31_214745) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "article_stats", force: :cascade do |t|
@@ -51,6 +52,16 @@ ActiveRecord::Schema.define(version: 2020_12_19_185350) do
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "dev_to_username", null: false
+    t.string "name", null: false
+    t.string "profile_image_url"
+    t.string "profile_image_90_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dev_to_username"], name: "index_users_on_dev_to_username"
   end
 
   add_foreign_key "article_stats", "articles"
