@@ -7,7 +7,7 @@ module.exports = {
     "./app/javascript/**/*.ts",
     "./app/javascript/**/*.tsx",
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {},
     colors: {
@@ -21,10 +21,15 @@ module.exports = {
         DEFAULT: '#F7CB45'
       },
       pink: {
-        DEFAULT: '#F3CBFC'
+        light: '#F3CBFC',
+        DEFAULT: '#e376fc'
       },
       white: {
+        blurple: '#c9cbf2',
         DEFAULT: '#FFF',
+      },
+      dark: {
+        DEFAULT: '#131533'
       }
     }
   },

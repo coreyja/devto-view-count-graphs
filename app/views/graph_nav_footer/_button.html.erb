@@ -1,4 +1,4 @@
-<div class="py-2 flex-1 <%= 'bg-blurple-light text-white rounded-lg' if local_assigns[:active] %>">
+<div class="py-2 flex-1 dark:text-white-blurple <%= 'bg-blurple-light text-white dark:text-white rounded-lg' if local_assigns[:active] %>">
   <%= link_to local_assigns[:link_to], class: 'flex flex-col items-center text-center' do %>
     <%= render local_assigns[:icon], icon_class: 'h-5 w-5' %>
     <%= local_assigns[:sub_text] %>
