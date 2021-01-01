@@ -1,11 +1,12 @@
 <div class="py-2" data-controller="expandable-content" data-expandable-content-expanded-value="false">
-  <h1 class="inline-block p-4 text-xl bg-blue-200 rounded-full cursor-pointer" data-action="click->expandable-content#toggle">
+  <h1 class="flex flex-row items-end p-4 text-xl rounded-t-lg cursor-pointer bg-yellow" data-action="click->expandable-content#toggle">
     <%= locals[:title] %>
+    <div class="flex-grow block"></div>
     <span class="inline-block transform" data-expandable-content-target="icon">
-      >
+      <%= render 'icons/chevron', icon_class: 'h-5 w-5' %>
     </span>
   </h1>
-  <ul data-expandable-content-target="list">
+  <ul class="p-2 rounded-b-lg bg-yellow-light" data-expandable-content-target="list">
     <%= yield %>
   </ul>
 </div>

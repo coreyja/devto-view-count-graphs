@@ -1,7 +1,9 @@
-<h1 class="text-xl text-center text-white rounded-t-lg bg-blurple-light py-1">Most Recent Posts</h1>
-<ul class="p-2 rounded-b-lg bg-blurple-lighter">
-  <%= render partial: 'article_list_item', collection: @most_recent_articles, as: :article %>
-</ul>
+<div class="py-2">
+  <h1 class="py-1 text-xl text-center text-white rounded-t-lg bg-blurple-light">Most Recent Posts</h1>
+  <ul class="p-2 rounded-b-lg bg-blurple-lighter">
+    <%= render partial: 'article_list_item', collection: @most_recent_articles, as: :article %>
+  </ul>
+</div>
 
 <%= render 'expandable_content', locals: { title: 'Articles This Month' } do %>
   <%= render partial: 'article_list_item', collection: @articles_this_month, as: :article %>
