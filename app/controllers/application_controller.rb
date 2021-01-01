@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
     name: ENV.fetch('BASIC_AUTH_USERNAME'),
     password: ENV.fetch('BASIC_AUTH_PASSWORD')
   )
+
+  private
+
+  def current_user
+    User.first
+  end
 end
