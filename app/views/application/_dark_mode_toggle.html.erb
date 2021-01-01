@@ -1,0 +1,6 @@
+<div class="relative w-20 h-10 mx-2 rounded-full bg-pink-light" data-action="click->dark-mode#toggle">
+  <div class="absolute top-0 left-0 w-10 h-10 rounded-full transition-all bg-blurple-lighter" data-dark-mode-target="toggle">
+    <span data-dark-mode-target="sunIcon" class="absolute opacity-0 inset-2 transition-opacity"><%= render 'icons/sun' %></span>
+    <span data-dark-mode-target="moonIcon" class="absolute inset-2 transition-opacity"><%= render 'icons/moon' %></span>
+  </div>
+</div>

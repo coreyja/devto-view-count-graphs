@@ -1,4 +1,4 @@
-<div class="flex flex-row items-center mb-5">
+<div class="flex flex-row items-center my-4">
   <%= link_to root_path, class: 'mr-2' do %>
     <%= render 'icons/home', icon_class: 'h-7 w-7 text-blurple-lighter' %>
   <% end %>
@@ -6,5 +6,8 @@
     <h1 class="text-base font-bold dark:text-white">DEV.stat</h1>
   <% end %>
   <div class="flex-grow"></div>
-  <%= image_tag current_user.profile_image_90_url, class: 'h-9 w-9 rounded-full bg-blurple-lighter', data: { action: "click->dark-mode#toggle" } %>
+
+  <%= render 'dark_mode_toggle' %>
+
+  <%= image_tag current_user.profile_image_90_url, class: 'h-9 w-9 rounded-full bg-blurple-lighter' %>
 </div>
