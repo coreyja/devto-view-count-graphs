@@ -15,8 +15,11 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 // Chart Kick
-require("chartkick")
+import Chartkick from 'chartkick'
 require("chart.js")
+
+import { lightModeOptions } from "../chartOptions"
+Chartkick.options = lightModeOptions;
 
 // Stylesheets
 import "stylesheets/application"
