@@ -1,13 +1,15 @@
-<div class="flex flex-row items-center my-4">
-  <%= link_to root_path, class: 'mr-2' do %>
-    <%= render 'icons/home', icon_class: 'h-7 w-7 text-blurple-lighter' %>
-  <% end %>
-  <%= link_to root_path do %>
-    <h1 class="text-base font-bold dark:text-white">DEV.stat</h1>
-  <% end %>
-  <div class="flex-grow"></div>
+<div class="flex flex-col items-center w-full py-3 mb-3 rounded-b-lg x-1 bg-dark-light">
+  <div class="flex flex-row items-center flex-grow w-full max-w-screen-sm">
+    <%= link_to root_path, class: 'mr-2' do %>
+      <%= render 'icons/home', icon_class: 'h-7 w-7 text-blurple-lighter' %>
+    <% end %>
+    <%= link_to root_path do %>
+      <h1 class="text-base font-bold dark:text-white">DEV.stat</h1>
+    <% end %>
+    <div class="flex-grow"></div>
 
-  <%= render 'dark_mode_toggle' %>
+    <%= render 'dark_mode_toggle' %>
 
-  <%= image_tag current_user.profile_image_90_url, class: 'h-9 w-9 rounded-full bg-blurple-lighter' %>
+    <%= image_tag current_user.profile_image_90_url, class: 'h-9 w-9 rounded-full bg-blurple-lighter' %>
+  </div>
 </div>

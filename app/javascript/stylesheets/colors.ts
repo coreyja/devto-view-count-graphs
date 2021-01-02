@@ -17,7 +17,8 @@ const colors = {
     DEFAULT: '#FFF',
   },
   dark: {
-    DEFAULT: '#131533'
+    light: '#1a2634',
+    DEFAULT: '#0d1219'
   }
 };
 

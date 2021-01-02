@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="flex flex-col items-center min-h-screen px-3" data-controller="dark-mode" data-dark-mode-target="html" data-dark-mode-dark-enabled-value="true">
+<html class="min-h-screen px-3" data-controller="dark-mode" data-dark-mode-target="html" data-dark-mode-dark-enabled-value="true">
   <head>
     <title>DevtoViewCountGraphs</title>
     <%= csrf_meta_tags %>
@@ -11,9 +11,11 @@
     <meta name="viewport" content="width=device-width">
   </head>
 
-  <body class="flex flex-col flex-1 w-full min-h-screen max-w-screen-sm dark:bg-dark">
+  <body class="flex flex-col items-center w-full min-h-screen dark:bg-dark">
     <%= render 'header' %>
 
-    <%= yield %>
+    <div class="flex flex-col flex-grow w-full max-w-screen-sm">
+      <%= yield %>
+    </div>
   </body>
 </html>
