@@ -1,6 +1,3 @@
-const colors = require('./stylesheets/colors')
-import * as dd from 'tailwindcss/colors'
-
 const baseOptions = {
 }
 
@@ -19,16 +16,16 @@ const chartJSOptions = (colors: { labelColor: string, gridLineColor: string }) =
 
 const darkModeOptions = {
   ...baseOptions,
-  colors: [colors.white.DEFAULT],
-  download: { background: colors.dark.DEFAULT },
-  library: chartJSOptions({ labelColor: colors.pink.light, gridLineColor: colors.pink.light}),
+  colors: ['#fff'], // white.DEFAULT
+  download: { background: '#0d1219' }, // dark.DEFAULT
+  library: chartJSOptions({ labelColor: '#F3CBFC', gridLineColor: '#F3CBFC'}), // pink.light
 }
 
 const lightModeOptions = {
   ...baseOptions,
-  colors: [colors.blurple.DEFAULT],
-  download: { background: colors.white.DEFAULT },
-  library: chartJSOptions({ labelColor: colors.blurple.light, gridLineColor: colors.blurple.lighter}),
+  colors: ['#3E49D7'], // blurple.DEFAULT
+  download: { background: '#FFF' }, // white.DEFAULT
+  library: chartJSOptions({ labelColor: '#5b64ef', gridLineColor: '#5b64ef'}), // blurple.light
 }
 
 export { darkModeOptions, lightModeOptions }
