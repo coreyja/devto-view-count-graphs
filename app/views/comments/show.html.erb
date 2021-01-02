@@ -1,14 +1,7 @@
-<%= render 'graph_title', title: @article.title %>
-
-<% if @article.cover_image %>
-  <%= image_tag @article.cover_image %>
+<%= render 'layouts/graph_page', article: @article, active: :comments do %>
+  <%= line_chart(
+    @article.article_stats.group_by_hour(:recorded_at).maximum(:comments_count),
+    xtitle: time_ago_in_words(@article.article_stats.order(recorded_at: :asc).limit(1).pluck(:recorded_at).first),
+    ytitle: 'Comments',
+  ) %>
 <% end %>
-<div id="spacer" class="flex-grow"></div>
-<%= line_chart(
-  @article.article_stats.group_by_hour(:recorded_at).maximum(:comments_count),
-  xtitle: time_ago_in_words(@article.article_stats.order(recorded_at: :asc).limit(1).pluck(:recorded_at).first),
-  ytitle: 'Comments',
-) %>
-<div id="spacer" class="flex-grow"></div>
-
-<%= render 'graph_nav_footer', active: :comments, article: @article %>

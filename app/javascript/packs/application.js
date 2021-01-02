@@ -33,3 +33,6 @@ application.load(definitionsFromContext(context))
 
 // Turbo
 import "@hotwired/turbo-rails"
+
+// Twitter Code Inlined
+import "../twitterIntent"

@@ -13,4 +13,12 @@ class Article < ApplicationRecord
   def most_recent_stat
     article_stats.by_recency.first
   end
+
+  def recommended_tweet_text
+    <<~TWEET
+      My article "#{title}" is getting popular! It's had #{most_recent_stat.page_views_count} views so far. Go check it out!
+
+      #DEVstat #devto
+    TWEET
+  end
 end
