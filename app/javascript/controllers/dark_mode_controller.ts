@@ -4,15 +4,22 @@ import {darkModeOptions, lightModeOptions} from "../chartOptions"
 
 export default class extends Controller {
   static targets = [ "html", "toggle", "sunIcon", "moonIcon" ]
-  static values = { darkEnabled: Boolean }
+  static values = { darkEnabled: Boolean, preferredTheme: String }
 
   declare darkEnabledValue: Boolean
+  declare preferredThemeValue: String
   declare htmlTarget: HTMLElement
   declare toggleTarget: HTMLElement
   declare sunIconTarget: HTMLElement
   declare moonIconTarget: HTMLElement
 
   connect() {
+    if (this.preferredThemeValue === 'light') {
+      this.darkEnabledValue = false
+    } else if (this.preferredThemeValue === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.darkEnabledValue = true
+    }
+
     document.addEventListener("turbo:render", () =>{
       this.refresh()
     })
@@ -23,6 +30,8 @@ export default class extends Controller {
 
   toggle() {
     this.darkEnabledValue = !this.darkEnabledValue
+
+    this.recordPreferredTheme()
   }
 
   darkEnabledValueChanged() {
@@ -57,5 +66,22 @@ export default class extends Controller {
       this.sunIconTarget.classList.remove('opacity-0')
       this.moonIconTarget.classList.add('opacity-0')
     }
+  }
+
+  private async recordPreferredTheme() {
+    const theme = this.darkEnabledValue ? 'dark' : 'light'
+    const token = (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement).content;
+
+    await fetch(
+      '/preferred_theme',
+      {
+        method: 'POST',
+        headers: {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({preferred_theme: theme})
+      }
+    )
   }
 }

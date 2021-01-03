@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_214745) do
+ActiveRecord::Schema.define(version: 2021_01_03_000300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_12_31_214745) do
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cover_image_url"
     t.index ["external_id"], name: "index_articles_on_external_id", unique: true
   end
 
@@ -54,6 +55,17 @@ ActiveRecord::Schema.define(version: 2020_12_31_214745) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "shared_articles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "articles_id"
+    t.uuid "users_id"
+    t.datetime "frozen_at"
+    t.datetime "expires_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["articles_id"], name: "index_shared_articles_on_articles_id"
+    t.index ["users_id"], name: "index_shared_articles_on_users_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "dev_to_username", null: false
     t.string "name", null: false
@@ -61,8 +73,11 @@ ActiveRecord::Schema.define(version: 2020_12_31_214745) do
     t.string "profile_image_90_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "preferred_theme"
     t.index ["dev_to_username"], name: "index_users_on_dev_to_username"
   end
 
   add_foreign_key "article_stats", "articles"
+  add_foreign_key "shared_articles", "articles", column: "articles_id"
+  add_foreign_key "shared_articles", "users", column: "users_id"
 end

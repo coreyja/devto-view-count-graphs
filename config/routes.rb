@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     resource :likes, only: %w[show]
     resource :comments, only: %w[show]
   end
+
+  resource :preferred_theme, only: %w[create]
 end
