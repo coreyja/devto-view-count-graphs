@@ -3,9 +3,8 @@
 <% if local_assigns[:article].cover_image %>
   <%= image_tag local_assigns[:article].cover_image %>
 <% end %>
-<div id="spacer" class="flex-grow"></div>
 
-<%= render 'tweet_article', article: local_assigns[:article] %>
+<div id="spacer" class="flex-grow"></div>
 
 <%= yield %>
 
