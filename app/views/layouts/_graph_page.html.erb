@@ -5,9 +5,10 @@
 <% end %>
 <div id="spacer" class="flex-grow"></div>
 
-<%= render 'tweet_article', article: local_assigns[:article] %>
 
 <%= yield %>
+
+<%= render 'tweet_article', article: local_assigns[:article] %>
 
 <div id="spacer" class="flex-grow"></div>
 

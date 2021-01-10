@@ -1,7 +1,7 @@
 <%= link_to(
   external_url('https://twitter.com/intent/tweet', params: { text: local_assigns[:article].recommended_tweet_text, button_hashtag: 'DEVstat3' }),
-  class: 'dark:text-white w-15 h-10 rounded-lg border-2 self-start px-3',
+  class: 'dark:text-white w-15 h-8 rounded-lg border-2 self-start px-3',
   data: { show_count: false  }
 ) do %>
-  <%= render 'icons/twitter', icon_class: 'w-10 h-10 inline-block' %> Tweet
+  <%= render 'icons/twitter', icon_class: 'w-7 h-7 inline-block' %> Tweet
 <% end %>

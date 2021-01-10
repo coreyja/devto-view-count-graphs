@@ -16,7 +16,7 @@ class Article < ApplicationRecord
 
   def recommended_tweet_text
     <<~TWEET
-      My article "#{title}" is getting popular! It's had #{most_recent_stat.page_views_count} views so far. Go check it out!
+      #{title} -- #{most_recent_stat.page_views_count} views
 
       #DEVstat #devto
     TWEET

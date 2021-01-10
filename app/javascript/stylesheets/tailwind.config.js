@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: [
     "./app/views/**/*.html.erb",
@@ -11,6 +13,7 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
+      ...colors,
       blurple: {
         lighter: '#8990f9',
         light: '#5b64ef',
@@ -34,6 +37,9 @@ module.exports = {
       },
       gray: {
         light: '#eef0f1'
+      },
+      twitter: {
+        blue: '',
       }
     },
   },
