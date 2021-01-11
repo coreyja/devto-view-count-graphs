@@ -15,17 +15,17 @@ class LikesController < ApplicationController
     end
 
     def start_at=(val)
-      val = Date.parse(val) if val.is_a?(String)
+      val = Time.zone.parse(val) if val.is_a?(String)
       @start_at = val
     end
 
     def end_at=(val)
-      val = Date.parse(val) if val.is_a?(String)
+      val = Time.zone.parse(val) if val.is_a?(String)
       @end_at = val
     end
 
     def article_stats
-      article.article_stats.where(recorded_at: start_at.at_beginning_of_day..end_at.at_end_of_day)
+      article.article_stats.where(recorded_at: start_at.beginning_of_day..end_at.end_of_day)
     end
 
     def min_start_at
@@ -33,7 +33,7 @@ class LikesController < ApplicationController
     end
 
     def max_end_at
-      Time.zone.now.to_date
+      Time.zone.today
     end
   end
 
