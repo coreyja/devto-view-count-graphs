@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.2-node12
+      - image: circleci/ruby:2.6.2-node
         environment:
           PGHOST: localhost
           PGUSER: your-app-name
