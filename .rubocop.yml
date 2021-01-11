@@ -11,3 +11,4 @@ AllCops:
   Exclude:
     - 'db/**/*'
     - 'node_modules/**/*'
+    - 'vendor/**/*'
