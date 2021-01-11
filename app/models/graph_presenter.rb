@@ -2,7 +2,7 @@ class GraphPresenter
   include ActiveModel::Model
   include ActionView::Helpers::DateHelper
 
-  attr_accessor :article
+  attr_accessor :article, :reset_url
 
   def start_at
     @start_at || min_start_at

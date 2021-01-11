@@ -1,7 +1,7 @@
-<%= render 'layouts/graph_page', article: @article, active: :comments do %>
+<%= render 'layouts/graph_page', presenter: @presenter, active: :comments do %>
   <%= line_chart(
-    @article.article_stats.group_by_hour(:recorded_at).maximum(:comments_count),
-    xtitle: time_ago_in_words(@article.article_stats.order(recorded_at: :asc).limit(1).pluck(:recorded_at).first),
+    @presenter.article_stats.group_by_hour(:recorded_at).maximum(:comments_count),
+    xtitle: @presenter.timespan_in_words,
     ytitle: 'Comments',
   ) %>
 <% end %>
