@@ -34,6 +34,6 @@ module DevtoViewCountGraphs
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.time_zone = ENV["RAILS_TIMEZONE"] || 'Eastern Time (US & Canada)'
+    config.time_zone = ENV['RAILS_TIMEZONE'] || 'Eastern Time (US & Canada)'
   end
 end

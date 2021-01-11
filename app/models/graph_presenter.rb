@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GraphPresenter
   include ActiveModel::Model
   include ActionView::Helpers::DateHelper
@@ -27,7 +29,7 @@ class GraphPresenter
   end
 
   def min_start_at
-    article.article_stats.order(recorded_at: :asc).limit(1).pluck(:recorded_at).first.to_date
+    article.article_stats.order(recorded_at: :asc).limit(1).pick(:recorded_at).to_date
   end
 
   def max_end_at
