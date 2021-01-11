@@ -7,8 +7,17 @@
 <div id="spacer" class="flex-grow"></div>
 
 
-<%= render 'icons/calendar', icon_class: 'h-5 w-5' %>
-<%= content_tag(:input, nil, type: 'text', name: 'range',
+<div class="self-start ">
+<p class="inline-block p-3 text-white rounded-full bg-blurple-lighter">
+  Select a Date
+  <%= render 'icons/calendar', icon_class: 'h-5 w-5 inline-block' %>
+</p>
+<%= link_to 'Reset', nil, class: 'pl-3 inline-block dark:text-white' %>
+</div>
+
+<div id="spacer" class="flex-grow"></div>
+
+<%= content_tag(:input, nil, type: 'text', name: 'range', class: 'hidden',
                 data: {
                   controller: "flatpickr",
                   flatpickr_mode: "range",
@@ -20,7 +29,6 @@
                   flatpickr_default_date: "#{presenter.start_at.iso8601} to #{presenter.end_at.iso8601}"
                 }) %>
 
-<%= link_to 'Reset', nil %>
 
 <%= yield %>
 
