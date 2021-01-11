@@ -7,27 +7,26 @@
 <div id="spacer" class="flex-grow"></div>
 
 
-<div class="self-start ">
-<p class="inline-block p-3 text-white rounded-full bg-blurple-lighter">
+<div class="relative self-start" data-controller="datepicker">
+  <%= content_tag(:input, nil, type: 'text', name: 'range', class: 'inset-0 -top-1 absolute h-0 w-0',
+                  data: {
+                    controller: "flatpickr",
+                    flatpickr_mode: "range",
+                    flatpickr_date_format: "Y-m-d",
+                    flatpickr_min_date: presenter.min_start_at.iso8601,
+                    flatpickr_max_date: presenter.max_end_at.iso8601,
+                    flatpickr_default_date: "#{presenter.start_at.iso8601} to #{presenter.end_at.iso8601}",
+                    datepicker_target: 'input'
+                  }) %>
+  <p class="inline-block p-3 text-white rounded-full bg-blurple-lighter" data-action="click->datepicker#clickInput">
   Select a Date
   <%= render 'icons/calendar', icon_class: 'h-5 w-5 inline-block' %>
-</p>
-<%= link_to 'Reset', nil, class: 'pl-3 inline-block dark:text-white' %>
+  </p>
+  <%= link_to 'Reset', nil, class: 'pl-3 inline-block dark:text-white' %>
 </div>
 
 <div id="spacer" class="flex-grow"></div>
 
-<%= content_tag(:input, nil, type: 'text', name: 'range', class: 'hidden',
-                data: {
-                  controller: "flatpickr",
-                  flatpickr_mode: "range",
-                  flatpickr_date_format: "Y-m-d",
-                  flatpickr_alt_input: true,
-                  flatpickr_alt_format: "F d Y",
-                  flatpickr_min_date: presenter.min_start_at.iso8601,
-                  flatpickr_max_date: presenter.max_end_at.iso8601,
-                  flatpickr_default_date: "#{presenter.start_at.iso8601} to #{presenter.end_at.iso8601}"
-                }) %>
 
 
 <%= yield %>
