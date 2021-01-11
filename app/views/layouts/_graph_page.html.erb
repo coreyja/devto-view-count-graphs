@@ -1,7 +1,7 @@
-<%= render 'graph_title', title: local_assigns[:article].title %>
+<%= render 'graph_title', title: presenter.article.title %>
 
-<% if local_assigns[:article].cover_image %>
-  <%= image_tag local_assigns[:article].cover_image %>
+<% if presenter.article.cover_image %>
+  <%= image_tag presenter.article.cover_image %>
 <% end %>
 
 <div id="spacer" class="flex-grow"></div>
@@ -10,4 +10,4 @@
 
 <div id="spacer" class="flex-grow"></div>
 
-<%= render 'graph_nav_footer', active: local_assigns[:active], article: local_assigns[:article] %>
+<%= render 'graph_nav_footer', local_assigns %>
