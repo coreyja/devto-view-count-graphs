@@ -1,13 +1,13 @@
 <%= render 'graph_title', title: presenter.article.title %>
 
 <% if presenter.article.cover_image %>
-  <%= image_tag presenter.article.cover_image %>
+  <%= image_tag presenter.article.cover_image, class: 'flex-shrink' %>
 <% end %>
 
 <div id="spacer" class="flex-grow"></div>
 
 
-<div class="relative self-start" data-controller="datepicker">
+<div class="relative self-start py-5" data-controller="datepicker">
   <%= content_tag(:input, nil, type: 'text', name: 'range', class: 'inset-0 -top-1 absolute h-0 w-0',
                   data: {
                     controller: "flatpickr",
