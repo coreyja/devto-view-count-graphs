@@ -1,7 +1,21 @@
 <%= render 'layouts/graph_page', article: @article, active: :likes do %>
+    <%= content_tag(:input, nil, type: 'text', name: 'range',
+      data: {
+        controller: "flatpickr",
+        flatpickr_mode: "range",
+        flatpickr_date_format: "Y-m-d",
+        flatpickr_alt_input: true,
+        flatpickr_alt_format: "F d Y",
+        flatpickr_min_date: @presenter.min_start_at.iso8601,
+        flatpickr_max_date: @presenter.max_end_at.iso8601,
+        flatpickr_default_date: "#{@presenter.start_at.iso8601} to #{@presenter.end_at.iso8601}"
+      }) %>
+
+  <%= link_to 'Reset', article_likes_path(@presenter.article) %>
+
   <%= line_chart(
-    @article.article_stats.group_by_hour(:recorded_at).maximum(:positive_reactions_count),
-    xtitle: time_ago_in_words(@article.article_stats.order(recorded_at: :asc).limit(1).pluck(:recorded_at).first),
+    @presenter.article_stats.group_by_hour(:recorded_at).maximum(:positive_reactions_count),
+    xtitle: time_ago_in_words(@article_stats.order(recorded_at: :asc).limit(1).pluck(:recorded_at).first),
     ytitle: 'Likes',
   ) %>
 <% end %>

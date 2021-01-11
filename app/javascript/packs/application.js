@@ -34,5 +34,5 @@ application.load(definitionsFromContext(context))
 // Turbo
 import "@hotwired/turbo-rails"
 
-// Twitter Code Inlined
-import "../twitterIntent"
+// Import style for flatpickr
+require("flatpickr/dist/flatpickr.css")
