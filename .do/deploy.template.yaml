@@ -1,0 +1,79 @@
+spec:
+  name: sample-golang
+  databases:
+    - engine: PG
+      name: devto-view-count-db
+      num_nodes: 1
+      size: db-s-dev-database
+      version: "12"
+  jobs:
+    - environment_slug: ruby-on-rails
+      envs:
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        value: ${devto-view-count-db.DATABASE_URL}
+      - key: REDIS_URL
+        scope: RUN_AND_BUILD_TIME
+        value: ${db-redis-devto-views.REDIS_URL}
+      github:
+        branch: main
+        deploy_on_push: true
+        repo: coreyja/devto-view-count-graphs
+      instance_count: 1
+      instance_size_slug: basic-xs
+      kind: POST_DEPLOY
+      name: migrate
+      run_command: bundle exec rake db:migrate
+  services:
+    - environment_slug: ruby-on-rails
+      envs:
+      - key: DEV_TO_AUTH_TOKEN
+        scope: RUN_AND_BUILD_TIME
+        value: ENTER_DEV_TO_AUTH_TOKEN
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        value: ${devto-view-count-db.DATABASE_URL}
+      - key: BASIC_AUTH_USERNAME
+        scope: RUN_AND_BUILD_TIME
+        value: IF_YOU_WANT_BASIC_AUTH_ENTER_A_USERNAME_AND_PASSWORD
+      - key: BASIC_AUTH_PASSWORD
+        scope: RUN_AND_BUILD_TIME
+        value: LEAVE_BLANK_FOR_A_PUBLIC_PAGE
+      - key: RAILS_SENTRY_DSN
+        scope: RUN_AND_BUILD_TIME
+        value: ENTER_SENTRY_DSN
+      github:
+        branch: main
+        deploy_on_push: true
+        repo: coreyja/devto-view-count-graphs
+      http_port: 8080
+      instance_count: 1
+      instance_size_slug: basic-xxs
+      name: devto-view-count-graphs
+      routes:
+      - path: /
+      run_command: bundle exec rails server
+    workers:
+    - environment_slug: ruby-on-rails
+      envs:
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        value: ${devto-view-count-db.DATABASE_URL}
+      - key: DEV_TO_AUTH_TOKEN
+        scope: RUN_AND_BUILD_TIME
+        value: m1HvpcYk5ncFnXYvUD7wp2qR
+      - key: RAILS_SENTRY_DSN
+        scope: RUN_AND_BUILD_TIME
+        value: https://73bb2fd0dae24c7794c036adaf69e7e7@o196099.ingest.sentry.io/5564114
+      - key: REDIS_URL
+        scope: RUN_AND_BUILD_TIME
+        value: ${db-redis-devto-views.REDIS_URL}
+      github:
+        branch: main
+        deploy_on_push: true
+        repo: coreyja/devto-view-count-graphs
+      instance_count: 1
+      instance_size_slug: basic-xxs
+      name: devto-view-count-graphs-worker
+      run_command: bundle exec rake jobs:work
+
