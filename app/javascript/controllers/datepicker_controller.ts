@@ -5,11 +5,7 @@ export default class extends Controller {
 
   declare inputTarget: HTMLElement
 
-  connect() {
-  }
-
   clickInput() {
-    console.log(this.inputTarget)
     this.inputTarget.click()
   }
 }
